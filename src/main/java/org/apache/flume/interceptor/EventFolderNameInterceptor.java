@@ -60,10 +60,12 @@ public class EventFolderNameInterceptor implements Interceptor {
     if (headers.containsKey(fileHeaderKey)) {
       // extract the last folder name from the given key
       File file = new File(headers.get(fileHeaderKey));
-      String path[] = file.list();
+      String path = file.getAbsolutePath();
+      String[] paths = path.split("/");
+
       //String parent = file.getParent();
-      if (path != null) {
-        String dir = path[Integer.parseInt(folderIndexKey)];
+      if (paths != null) {
+        String dir = paths[Integer.parseInt(headers.get(folderIndexKey))];
         if (!dir.isEmpty()) {
           headers.put(folderNameKey, dir);
         }
