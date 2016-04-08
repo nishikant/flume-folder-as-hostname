@@ -68,6 +68,7 @@ public class EventFolderNameInterceptorTest {
         "###[1979-07-21 00:00:00]|test event", Charsets.UTF_8);
 
     event.getHeaders().put(fileKey,"/flumeInterceptor/pom.xml");
+    event.getHeaders().put(indexKey,"1");
     assertNull(folderKey + " does not exist", event.getHeaders().get(folderKey));
     event = interceptor.intercept(event);
     assertEquals(folderKey + " is set", event.getHeaders().get(folderKey),"flumeInterceptor" );
